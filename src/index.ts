@@ -11,7 +11,11 @@ const app = new Hono<{ Bindings: Bindings }>();
 app.use(prettyJSON());
 
 app.get("/", async (c) => {
-  return c.text("Welcome to Zippr! 🚀\n\n Shorten your URL using ");
+  return c.text(
+    `Welcome to Zippr! 🚀\n\nShorten your URL using CURL:\n\ncurl -X POST -d '{'url':'https://example.com'}' ${c.req.header(
+      "host"
+    )}/zip`
+  );
 });
 
 //redirect
@@ -25,7 +29,7 @@ app.get("/:shortUrl", async (c) => {
     //redirect to the original url
     return c.redirect(entry, 301);
   } else {
-    return c.text("URL not found");
+    return c.json({ error: "URL not found" });
   }
 });
 
