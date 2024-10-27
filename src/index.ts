@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { prettyJSON } from "hono/pretty-json";
+import { secureHeaders } from "hono/secure-headers";
 
 //types
 import type { Bindings } from "./types/bindings";
@@ -9,12 +10,12 @@ import { generateString } from "./utils/generateId";
 const app = new Hono<{ Bindings: Bindings }>();
 //formatting
 app.use(prettyJSON());
+//secure headers
+app.use(secureHeaders());
 
 app.get("/", async (c) => {
   return c.text(
-    `Welcome to Zippr! 🚀\n\nShorten your URL using CURL:\n\ncurl -X POST -d '{"url":"https://example.com"}' ${c.req.header(
-      "host"
-    )}/zip`
+    `Welcome to Zippr! 🚀\n\nShorten your URL using CURL:\n\ncurl -X POST -d '{"url":"https://example.com"}' https://zippr.dev/zip`
   );
 });
 
