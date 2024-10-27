@@ -12,7 +12,7 @@ app.use(prettyJSON());
 
 app.get("/", async (c) => {
   return c.text(
-    `Welcome to Zippr! 🚀\n\nShorten your URL using CURL:\n\ncurl -X POST -d '{'url':'https://example.com'}' ${c.req.header(
+    `Welcome to Zippr! 🚀\n\nShorten your URL using CURL:\n\ncurl -X POST -d '{"url":"https://example.com"}' ${c.req.header(
       "host"
     )}/zip`
   );

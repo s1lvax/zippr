@@ -7,6 +7,10 @@ compatibility_flags = [ "nodejs_compat" ]
 binding = "KV"
 id = "afd66e571d794de29679ab4575b31a6b"
 
+[observability]
+enabled = true
+head_sampling_rate = 1
+
 # [vars]
 # MY_VAR = "my-variable"
 
@@ -26,6 +30,3 @@ id = "afd66e571d794de29679ab4575b31a6b"
 # [ai]
 # binding = "AI"
 
-# [observability]
-# enabled = true
-# head_sampling_rate = 1
